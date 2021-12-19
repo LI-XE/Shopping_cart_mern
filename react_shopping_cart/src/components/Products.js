@@ -15,8 +15,7 @@ class Products extends Component {
   }
   componentDidMount() {
     this.props.fetchProducts();
-  };
-
+  }
   openModal = (product) => {
     this.setState({ product });
   };
@@ -25,11 +24,10 @@ class Products extends Component {
   };
   render() {
     const { product } = this.state;
-    console.log(this.props.products);
     return (
       <div>
         <Fade bottom cascade>
-          {!this.props.products?(
+          {!this.props.products ? (
             <div>Loading...</div>
           ) : (
             <ul className="products">
@@ -101,7 +99,9 @@ class Products extends Component {
     );
   }
 }
-
-export default connect((state) => ({ products: state.products.items }), {
-  fetchProducts,
-})(Products);
+export default connect(
+  (state) => ({ products: state.products.filteredItems }),
+  {
+    fetchProducts,
+  }
+)(Products);
